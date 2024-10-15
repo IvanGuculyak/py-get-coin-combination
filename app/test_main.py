@@ -24,3 +24,22 @@ class TestGetCoinCombination:
         combination: list[int]
     ) -> None:
         assert get_coin_combination(cents) == combination
+
+    @pytest.mark.parametrize(
+        "cents, error",
+        [
+            (-1, ValueError),
+            ("4", TypeError)
+        ],
+        ids=[
+            "-1 should be raising ValueError",
+            "'1' should be raising Type"
+        ]
+    )
+    def test_correct_raising_error(
+        self,
+        cents: int,
+        error: Exception
+    ) -> None:
+        with pytest.raises(error):
+            get_coin_combination(cents)
